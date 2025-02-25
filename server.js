@@ -1,15 +1,15 @@
-const app = require('./config/app');
-const connectDB = require('./config/db');
+const app = require('./src/config/app');
+const connectDB = require('./src/config/db');
 require('dotenv').config();
 
 // Route imports
-const authRoutes = require('./routes/auth');
-const userRoutes = require('./routes/users');
-const studentRoutes = require('./routes/students');
-const teacherRoutes = require('./routes/teachers');
-const classroomRoutes = require('./routes/classrooms');
-const gradeRoutes = require('./routes/grades');
-const attendanceRoutes = require('./routes/attendance');
+const authRoutes = require('./src/routes/authRoutes');
+const userRoutes = require('./src/routes/userRoutes');
+const studentRoutes = require('./src/routes/studentRoutes');
+const teacherRoutes = require('./src/routes/teacherRoutes');
+const classroomRoutes = require('./src/routes/classroomRoutes');
+const gradeRoutes = require('./src/routes/gradeRoutes');
+const attendanceRoutes = require('./src/routes/attendanceRoutes');
 
 
 // Connect to database

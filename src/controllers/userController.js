@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const UserService = require('./services/UserService');
+const UserService = require('../services/UserService');
+
 
 /**
  * @route GET /users

@@ -1,4 +1,4 @@
-const TeacherService = require('./services/TeacherService');
+const TeacherService = require('../services/TeacherService');
 const asyncHandler = require('../middleware/async');
 const ErrorResponse = require('../utils/errorResponse');
 

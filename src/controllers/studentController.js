@@ -1,5 +1,5 @@
 const express = require('express');
-const StudentService = require('./services/StudentService');
+const StudentService = require('../services/StudentService');
 const asyncHandler = require('../middleware/async');
 const ErrorResponse = require('../utils/errorResponse');
 
