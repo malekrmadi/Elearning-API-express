@@ -1,74 +1,38 @@
 const express = require('express');
-const StudentService = require('./services/StudentService');
-const asyncHandler = require('../middleware/async');
-const ErrorResponse = require('../utils/errorResponse');
-
 const router = express.Router();
+const studentController = require('../controllers/studentController');
 
 // Create a new student
-router.post('/', asyncHandler(async (req, res, next) => {
-    const student = await StudentService.createStudent(req.body);
-    res.status(201).json({ success: true, data: student });
-}));
+router.post('/', studentController.createStudent);
 
-// Get student by ID
-router.get('/:id', asyncHandler(async (req, res, next) => {
-    const student = await StudentService.getStudentById(req.params.id);
-    res.status(200).json({ success: true, data: student });
-}));
+// Get a student by ID
+router.get('/:id', studentController.getStudentById);
 
-// Get student by user ID
-router.get('/user/:userId', asyncHandler(async (req, res, next) => {
-    const student = await StudentService.getStudentByUserId(req.params.userId);
-    res.status(200).json({ success: true, data: student });
-}));
+// Get a student by user ID
+router.get('/user/:userId', studentController.getStudentByUserId);
 
-// Update student profile
-router.put('/:id', asyncHandler(async (req, res, next) => {
-    const student = await StudentService.updateStudent(req.params.id, req.body);
-    res.status(200).json({ success: true, data: student });
-}));
+// Update a student's profile
+router.put('/:id', studentController.updateStudent);
 
 // Get all classrooms for a student
-router.get('/:id/classrooms', asyncHandler(async (req, res, next) => {
-    const classrooms = await StudentService.getStudentClassrooms(req.params.id);
-    res.status(200).json({ success: true, data: classrooms });
-}));
+router.get('/:id/classrooms', studentController.getStudentClassrooms);
 
-// Enroll student in a classroom
-router.post('/:id/enroll/:classroomId', asyncHandler(async (req, res, next) => {
-    const result = await StudentService.enrollInClassroom(req.params.id, req.params.classroomId);
-    res.status(200).json({ success: true, data: result });
-}));
+// Enroll a student in a classroom
+router.post('/:id/enroll/:classroomId', studentController.enrollInClassroom);
 
-// Withdraw student from a classroom
-router.delete('/:id/withdraw/:classroomId', asyncHandler(async (req, res, next) => {
-    const result = await StudentService.withdrawFromClassroom(req.params.id, req.params.classroomId);
-    res.status(200).json({ success: true, data: result });
-}));
+// Withdraw a student from a classroom
+router.delete('/:id/withdraw/:classroomId', studentController.withdrawFromClassroom);
 
 // Get student grades (optionally filter by classroom)
-router.get('/:id/grades', asyncHandler(async (req, res, next) => {
-    const grades = await StudentService.getStudentGrades(req.params.id, req.query.classroomId);
-    res.status(200).json({ success: true, data: grades });
-}));
+router.get('/:id/grades', studentController.getStudentGrades);
 
 // Get student attendance (optionally filter by classroom)
-router.get('/:id/attendance', asyncHandler(async (req, res, next) => {
-    const attendance = await StudentService.getStudentAttendance(req.params.id, req.query.classroomId);
-    res.status(200).json({ success: true, data: attendance });
-}));
+router.get('/:id/attendance', studentController.getStudentAttendance);
 
-// Get all students (with pagination and filtering)
-router.get('/', asyncHandler(async (req, res, next) => {
-    const students = await StudentService.getAllStudents(req.query);
-    res.status(200).json({ success: true, data: students });
-}));
+// Get all students (with pagination & filtering)
+router.get('/', studentController.getAllStudents);
 
-// Delete student profile
-router.delete('/:id', asyncHandler(async (req, res, next) => {
-    await StudentService.deleteStudent(req.params.id);
-    res.status(200).json({ success: true, message: 'Student deleted successfully' });
-}));
+// Delete a student profile
+router.delete('/:id', studentController.deleteStudent);
 
 module.exports = router;

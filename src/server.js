@@ -12,8 +12,6 @@ const gradeRoutes = require('./routes/grades');
 const attendanceRoutes = require('./routes/attendance');
 
 
-
-
 // Connect to database
 connectDB();
 
